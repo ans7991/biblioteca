@@ -3,15 +3,11 @@ import java.util.Scanner;
 public class Bibliotica
 {
 
-    boolean bookFound = false;
-    Book[] books;
+    boolean bookFound;
 
-    Bibliotica()
+    public Bibliotica()
     {
-        books = new Book[3];
-        books[0] = new Book(101, "Gone with the Wind");
-        books[1] = new Book(102, "A Brief History Of Time");
-        books[2] = new Book(103, "Head First Java");
+        bookFound = false;
     }
 
     public String WelcomeMessage()
@@ -19,18 +15,21 @@ public class Bibliotica
         return "Hello Customer!";
     }
 
-    public void ViewBooks()
+    public void ViewBooks(Book[] books)
     {
         for(int i=0;i<books.length;i++)
             System.out.println(books[i].bookNo + "  " + books[i].bookName);
     }
 
-    public boolean ReserveABook(int bookNo)
+    public String ReserveABook(int bookNo, Book[] books)
     {
         for(int i=0;i<books.length;i++)
             if(bookNo == books[i].bookNo)
                 bookFound = true;
-        return bookFound;
+        if(bookFound)
+            return "Thank You! Enjoy the Book.";
+        else
+            return "Sorry! We don't have that book yet.";
     }
 
     public String CheckLibraryNumber()

@@ -14,15 +14,19 @@ public class BiblioticaTest
     @Test
     public void testReserveABookWithBookFound() throws Exception {
         int bookNo = 101;
+        Book[] books = new Book[1];
+        books[0] = new Book(101, "Gone with the Wind");
         Bibliotica NewUserTwo = new Bibliotica();
-        Assert.assertTrue(NewUserTwo.ReserveABook(bookNo));
+        Assert.assertEquals("Thank You! Enjoy the Book.", NewUserTwo.ReserveABook(bookNo, books));
     }
 
     @Test
     public void testReserveABookWithBookNotFound() throws Exception {
         int bookNo = 112;
+        Book[] books = new Book[1];
+        books[0] = new Book(101, "Gone with the Wind");
         Bibliotica NewUserThree = new Bibliotica();
-        Assert.assertFalse(NewUserThree.ReserveABook(112));
+        Assert.assertEquals("Sorry! We don't have that book yet.", NewUserThree.ReserveABook(bookNo, books));
     }
 
     @Test
