@@ -1,13 +1,11 @@
-import com.sun.javaws.jnl.LibraryDesc;
 import junit.framework.Assert;
 import org.junit.Test;
 
 import java.io.ByteArrayOutputStream;
 import java.io.OutputStream;
 import java.io.PrintStream;
-import java.nio.file.attribute.UserDefinedFileAttributeView;
 
-/*public class PublicLibraryMenuTest
+public class PublicLibraryMenuTest
 {
 
     OutputStream os = new ByteArrayOutputStream();
@@ -19,9 +17,10 @@ import java.nio.file.attribute.UserDefinedFileAttributeView;
     {
         System.setOut(ps);
         int choice = 1;
+        Bibliotica library = new Bibliotica();
         BookLibrary bookLibrary = new BookLibrary();
         PublicLibraryMenu menu = new PublicLibraryMenu();
-        menu.ExecuteChoice(choice);
+        menu.ExecuteChoice(choice, library);
         String expectedResult = "The following books are available.." + separator;
         for(int i=0;i<bookLibrary.Books.size();i++)
             expectedResult = expectedResult + bookLibrary.Books.get(i).getBookNo() + "  " + bookLibrary.Books.get(i).getBookName() + separator;
@@ -40,21 +39,23 @@ import java.nio.file.attribute.UserDefinedFileAttributeView;
     @Test
     public void testExecuteChoiceWhenChoiceIsThree()
     {
+        Bibliotica library = new Bibliotica();
         PublicLibraryMenu menu = new PublicLibraryMenu();
         System.setOut(ps);
         int choice = 3;
-        menu.ExecuteChoice(choice);
-        Assert.assertEquals("Please Talk to Librarian. Thank You." + separator, os.toString());
+        menu.ExecuteChoice(choice, library);
+        Assert.assertEquals("Please talk to librarian. Thank You." + separator, os.toString());
     }
 
     @Test
     public void testExecuteChoiceWhenChoiceIsFour()
     {
         PublicLibraryMenu menu = new PublicLibraryMenu();
+        Bibliotica library = new Bibliotica();
         MovieLibrary movieLibrary = new MovieLibrary();
         System.setOut(ps);
         int choice = 4;
-        menu.ExecuteChoice(choice);
+        menu.ExecuteChoice(choice, library);
         String expectedResult = "Movies Name   Director   Rating" + separator;
         for(int i=0;i<movieLibrary.Movies.size();i++)
         {
@@ -82,10 +83,10 @@ import java.nio.file.attribute.UserDefinedFileAttributeView;
     public void testExecuteChoiceWhenChoiceIsAnyOther()
     {
         PublicLibraryMenu menu = new PublicLibraryMenu();
+        Bibliotica library = new Bibliotica();
         System.setOut(ps);
         int choice = 8;
-        menu.ExecuteChoice(choice);
+        menu.ExecuteChoice(choice, library);
         Assert.assertEquals("Select a Valid Option!" + separator, os.toString());
     }
 }
-*/

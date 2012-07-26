@@ -28,7 +28,7 @@ public class BiblioticaTest
     @Test
     public void testCheckLibraryNumber() throws Exception {
         Bibliotica library = new Bibliotica();
-        String expectedResult = "Please Talk to Librarian. Thank You.";
+        String expectedResult = "Please talk to librarian. Thank You.";
         Assert.assertEquals(expectedResult, library.CheckLibraryNumber());
     }
 

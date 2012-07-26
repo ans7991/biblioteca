@@ -43,7 +43,6 @@ public class PublicLibraryMenu
                 Library.checkPassword(user);
                 break;
 
-
             default: System.out.println(Library.NotValidOption());
         }
 
