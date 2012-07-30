@@ -12,7 +12,7 @@ public class MovieTest
     String separator = System.getProperty("line.separator");
 
     @Test
-    public void testgetRating() throws Exception
+    public void testGetRating() throws Exception
     {
         Movie movie = new Movie("Hera Pheri", "Suniel", 10);
         String rating = movie.getRating();

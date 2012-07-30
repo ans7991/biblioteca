@@ -20,10 +20,10 @@ public class PublicLibraryMenuTest
         Bibliotica library = new Bibliotica();
         BookLibrary bookLibrary = new BookLibrary();
         PublicLibraryMenu menu = new PublicLibraryMenu();
-        menu.ExecuteChoice(choice, library);
+        menu.executeChoice(choice, library);
         String expectedResult = "The following books are available.." + separator;
-        for(int i=0;i<bookLibrary.Books.size();i++)
-            expectedResult = expectedResult + bookLibrary.Books.get(i).getBookNo() + "  " + bookLibrary.Books.get(i).getBookName() + separator;
+        for(int i=0;i<bookLibrary.books.size();i++)
+            expectedResult = expectedResult + bookLibrary.books.get(i).getBookNo() + "  " + bookLibrary.books.get(i).getBookName() + separator;
         Assert.assertEquals(expectedResult, os.toString());
     }
 
@@ -33,7 +33,7 @@ public class PublicLibraryMenuTest
         PublicLibraryMenu menu = new PublicLibraryMenu();
         Bibliotica Library = new Bibliotica();
         String exResult = "Thank You! Enjoy the Book.";
-        Assert.assertEquals(exResult, Library.ReserveABook(101));
+        Assert.assertEquals(exResult, Library.bookLibrary.reserveABook(101));
     }
 
     @Test
@@ -43,7 +43,7 @@ public class PublicLibraryMenuTest
         PublicLibraryMenu menu = new PublicLibraryMenu();
         System.setOut(ps);
         int choice = 3;
-        menu.ExecuteChoice(choice, library);
+        menu.executeChoice(choice, library);
         Assert.assertEquals("Please talk to librarian. Thank You." + separator, os.toString());
     }
 
@@ -55,28 +55,39 @@ public class PublicLibraryMenuTest
         MovieLibrary movieLibrary = new MovieLibrary();
         System.setOut(ps);
         int choice = 4;
-        menu.ExecuteChoice(choice, library);
+        menu.executeChoice(choice, library);
         String expectedResult = "Movies Name   Director   Rating" + separator;
-        for(int i=0;i<movieLibrary.Movies.size();i++)
+        for(int i=0;i<movieLibrary.movies.size();i++)
         {
-            expectedResult = expectedResult + movieLibrary.Movies.get(i).getMovieName() + "   " + movieLibrary.Movies.get(i).getDirector() + "   ";
-            if(!movieLibrary.Movies.get(i).isNew)
-                expectedResult = expectedResult + movieLibrary.Movies.get(i).getRating() + separator;
+            expectedResult = expectedResult + movieLibrary.movies.get(i).getMovieName() + "   " + movieLibrary.movies.get(i).getDirector() + "   ";
+            if(!movieLibrary.movies.get(i).isNew)
+                expectedResult = expectedResult + movieLibrary.movies.get(i).getRating() + separator;
             else
-                expectedResult = expectedResult + Movie.ratingNewMovie + separator;
+                expectedResult = expectedResult + Movie.RATING_NEW_MOVIE + separator;
         }
         Assert.assertEquals(expectedResult, os.toString());
     }
 
     @Test
-    public void testExecuteChoiceWhenChoiceIsFive()
+    public void testExecuteChoiceWhenChoiceIsFiveWithCorrectLogin()
     {
         PublicLibraryMenu menu = new PublicLibraryMenu();
-        Bibliotica Library = new Bibliotica();
+        Bibliotica library = new Bibliotica();
         System.setOut(ps);
         User user = new User("111-1113", "abcd");
-        Library.checkPassword(user);
+        library.userList.checkPassword(user);
         Assert.assertEquals("You are logged in." + separator, os.toString());
+    }
+
+    @Test
+    public void testExecuteChoiceWhenChoiceIsFiveWithIncorrectLogin()
+    {
+        PublicLibraryMenu menu = new PublicLibraryMenu();
+        Bibliotica library = new Bibliotica();
+        System.setOut(ps);
+        User user = new User("1111114", "7991");
+        library.userList.checkPassword(user);
+        Assert.assertEquals("Wrong Username or Password." + separator, os.toString());
     }
 
     @Test
@@ -86,7 +97,7 @@ public class PublicLibraryMenuTest
         Bibliotica library = new Bibliotica();
         System.setOut(ps);
         int choice = 8;
-        menu.ExecuteChoice(choice, library);
+        menu.executeChoice(choice, library);
         Assert.assertEquals("Select a Valid Option!" + separator, os.toString());
     }
 }

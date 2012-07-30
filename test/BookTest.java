@@ -12,14 +12,14 @@ public class BookTest {
     String separator = System.getProperty("line.separator");
 
     @Test
-    public void testgetBookNo() throws Exception
+    public void testGetBookNo() throws Exception
     {
         Book book = new Book(111, "Head First Java");
         Assert.assertEquals(111, book.getBookNo());
     }
 
     @Test
-    public void testgetBookName() throws Exception
+    public void testGetBookName() throws Exception
     {
         Book book = new Book(126, "Head First Java");
         Assert.assertEquals("Head First Java", book.getBookName());

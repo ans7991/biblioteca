@@ -4,7 +4,7 @@ public class PublicLibraryMenu
 {
 
     Scanner input = new Scanner(System.in);
-    public void DisplayMenu()
+    public void displayMenu()
     {
         System.out.println("Read the Menu below:");
         System.out.println("1. View All Books");
@@ -15,24 +15,23 @@ public class PublicLibraryMenu
         System.out.println("Please Enter Your Choice:.... ");
     }
 
-    public void ExecuteChoice(int choice,  Bibliotica Library)
+    public void executeChoice(int choice,  Bibliotica library)
     {
-        PublicLibraryMenu menu = new PublicLibraryMenu();
         switch(choice)
         {
             case 1: System.out.println("The following books are available..");
-                Library.ViewBooks();
+                library.bookLibrary.viewBooks();
                 break;
 
             case 2: System.out.println("Enter the Book Number: ");
-                System.out.println(Library.ReserveABook(input.nextInt()));
+                System.out.println(library.bookLibrary.reserveABook(input.nextInt()));
                 break;
 
-            case 3: System.out.println(Library.CheckLibraryNumber());
+            case 3: System.out.println(library.checkLibraryNumber());
                 break;
 
             case 4: System.out.println("Movies Name   Director   Rating");
-                Library.ListMovies();
+                library.movieLibrary.listMovies();
                 break;
 
             case 5: System.out.println("Enter Username: ");
@@ -40,10 +39,10 @@ public class PublicLibraryMenu
                 System.out.println("Enter Password: ");
                 String password = input.next();
                 User user = new User(username, password);
-                Library.checkPassword(user);
+                library.userList.checkPassword(user);
                 break;
 
-            default: System.out.println(Library.NotValidOption());
+            default: System.out.println(library.notValidOption());
         }
 
     }
@@ -51,14 +50,14 @@ public class PublicLibraryMenu
     public static void main(String args[])
     {
         String response;
-        Bibliotica Library = new Bibliotica();
-        PublicLibraryMenu Menu = new PublicLibraryMenu();
-        System.out.println(Library.WelcomeMessage());
+        Bibliotica library = new Bibliotica();
+        PublicLibraryMenu menu = new PublicLibraryMenu();
+        System.out.println(library.welcomeMessage());
         do
         {
-            Menu.DisplayMenu();
+            menu.displayMenu();
             Scanner dataIn = new Scanner(System.in);
-            Menu.ExecuteChoice(dataIn.nextInt(), Library);
+            menu.executeChoice(dataIn.nextInt(), library);
             System.out.println("Do you want to Continue(Yes/No):....");
             response = dataIn.next();
         }

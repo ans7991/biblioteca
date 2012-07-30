@@ -2,52 +2,52 @@ import java.text.MessageFormat;
 
 public class Movie
 {
-    private String MovieName;
-    private String Director;
-    private int Rating;
+    private String movieName;
+    private String director;
+    private int rating;
     public boolean isNew = false;
 
-    public static final String ratingNewMovie = "N/A";
+    public static final String RATING_NEW_MOVIE = "N/A";
 
-    Movie(String MovieName, String Director, int Rating)
+    Movie(String movieName, String director, int rating)
     {
-        this.MovieName = MovieName;
-        this.Director = Director;
-        this.Rating = Rating;
+        this.movieName = movieName;
+        this.director = director;
+        this.rating = rating;
     }
 
-    Movie(String MovieName, String Director)
+    Movie(String movieName, String director)
     {
-        this.MovieName = MovieName;
-        this.Director = Director;
+        this.movieName = movieName;
+        this.director = director;
         this.isNew = true;
     }
 
     public String getMovieName()
     {
-        return this.MovieName;
+        return this.movieName;
     }
 
     public String getDirector()
     {
-        return this.Director;
+        return this.director;
     }
 
     public String getRating()
     {
-        int NumberOfStars;
-        String VisualRating = "";
-        NumberOfStars = this.Rating/2;
-        for(int i=0;i<NumberOfStars;i++)
-            VisualRating = VisualRating + "*";
-        return VisualRating;
+        int numberOfStars;
+        String visualRating = "";
+        numberOfStars = this.rating/2;
+        for(int i=0;i<numberOfStars;i++)
+            visualRating = visualRating + "*";
+        return visualRating;
     }
 
     public void displayMovie()
     {
         if(!isNew)
-            System.out.println(MessageFormat.format("{0}   {1}   {2}", this.MovieName, this.Director, this.getRating()));
+            System.out.println(MessageFormat.format("{0}   {1}   {2}", this.movieName, this.director, this.getRating()));
         else
-            System.out.println(MessageFormat.format("{0}   {1}   {2}", this.MovieName, this.Director, ratingNewMovie));
+            System.out.println(MessageFormat.format("{0}   {1}   {2}", this.movieName, this.director, RATING_NEW_MOVIE));
     }
 }
